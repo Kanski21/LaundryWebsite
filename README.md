@@ -4,12 +4,12 @@ A modern, responsive website for Clear&Shine laundry service built with Next.js 
 
 ## Features
 
-- 🎯 **Services Section** - Detailed information about laundry and dry cleaning services
-- 💰 **Pricing List** - Comprehensive pricing for all services
-- 🧮 **Price Calculator** - Interactive calculator for customers
-- ⭐ **Testimonials** - Client reviews and ratings
-- 📱 **Responsive Design** - Works perfectly on all devices
-- ⚡ **Fast Performance** - Optimized with Next.js
+- **Hero with care label** – the brand's services shown as a garment care label with laundry care symbols
+- **For businesses and for homes** – separate offers for hotels/restaurants and for individual customers
+- **Five-step process** – pickup, washing, drying and ironing, packing, return
+- **What we wash** – textile groups; prices are quoted per order
+- **Inquiry builder** – customers pick items and quantities, and the form opens a ready email to info@clearshine.bg
+- **Responsive and accessible** – works from 375px phones up, keyboard focus, reduced motion
 
 ## Getting Started
 
@@ -31,15 +31,12 @@ cd LaundryWebsite
 npm install
 ```
 
-3. Add your logo:
-   - Place your logo file as `public/logo.png`
-
-4. Run the development server:
+3. Run the development server:
 ```bash
 npm run dev
 ```
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
 ## Building for Production
 
@@ -58,42 +55,33 @@ npm run start
 ├── components/
 │   ├── Header.jsx
 │   ├── Hero.jsx
-│   ├── Services.jsx
-│   ├── Pricing.jsx
-│   ├── Calculator.jsx
-│   ├── Testimonials.jsx
-│   └── Footer.jsx
+│   ├── Audiences.jsx
+│   ├── Process.jsx
+│   ├── Textiles.jsx
+│   ├── Inquiry.jsx
+│   ├── Footer.jsx
+│   ├── CareSymbols.jsx
+│   └── contact.js
 ├── styles/
 │   └── globals.css
 ├── public/
-│   └── logo.png (add your logo here)
+│   └── logo.png
 └── package.json
 ```
 
 ## Customization
 
-### Colors
+### Colors and fonts
 
-Edit `tailwind.config.js` to change the color scheme:
+Colors and fonts live in `tailwind.config.js`. Fonts (Cormorant Garamond and Commissioner, both with Cyrillic) are installed from npm and loaded in `pages/_app.jsx`.
 
-```javascript
-colors: {
-  primary: '#4B7BA7',      // Blue
-  secondary: '#7EABAF',    // Light Blue
-  accent: '#2C5282',       // Dark Blue
-}
-```
+### Contact information
 
-### Contact Information
+Phone, email and contact person are set once in `components/contact.js`.
 
-Update contact details in:
-- `components/Header.jsx`
-- `components/Hero.jsx`
-- `components/Footer.jsx`
+### Textiles
 
-### Services and Pricing
-
-Edit `components/Services.jsx` and `components/Pricing.jsx` to update your services and prices.
+The list of textiles in `components/Textiles.jsx` is used both on the page and in the inquiry form.
 
 ## Deployment
 

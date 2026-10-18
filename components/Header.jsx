@@ -1,42 +1,61 @@
 import { useState } from 'react'
+import { PHONE_DISPLAY, PHONE_HREF } from './contact'
+
+const NAV = [
+  { href: '#za-kogo', label: 'За кого' },
+  { href: '#proces', label: 'Как работим' },
+  { href: '#tekstili', label: 'Какво перем' },
+  { href: '#zapitvane', label: 'Запитване' },
+]
 
 export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <div className="h-12 w-12 bg-gradient-to-br from-primary to-secondary rounded flex items-center justify-center text-white font-bold text-xl">CS</div>
-            <div>
-              <h1 className="text-xl font-bold text-primary">Clear&Shine</h1>
-              <p className="text-xs text-gray-600">Professional Laundry</p>
-            </div>
-          </div>
-          <nav className="hidden md:flex space-x-8">
-            <a href="#services" className="text-gray-700 hover:text-primary transition">Services</a>
-            <a href="#pricing" className="text-gray-700 hover:text-primary transition">Pricing</a>
-            <a href="#calculator" className="text-gray-700 hover:text-primary transition">Calculator</a>
-            <a href="#testimonials" className="text-gray-700 hover:text-primary transition">Testimonials</a>
-          </nav>
-          <div className="hidden md:block">
-            <a href="tel:+359888004606" className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-accent transition">Call Now</a>
-          </div>
-          <button className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
-          </button>
-        </div>
-        {mobileMenuOpen && (
-          <nav className="md:hidden mt-4 space-y-4">
-            <a href="#services" className="block text-gray-700 hover:text-primary">Services</a>
-            <a href="#pricing" className="block text-gray-700 hover:text-primary">Pricing</a>
-            <a href="#calculator" className="block text-gray-700 hover:text-primary">Calculator</a>
-            <a href="#testimonials" className="block text-gray-700 hover:text-primary">Testimonials</a>
-            <a href="tel:+359888004606" className="block bg-primary text-white px-6 py-2 rounded-lg text-center">Call Now</a>
-          </nav>
-        )}
+    <header className="sticky top-0 z-50 border-b border-line bg-white/95 backdrop-blur">
+      <div className="mx-auto flex h-[4.5rem] max-w-page items-center justify-between px-4 sm:px-6">
+        <a href="#nachalo" className="flex items-center gap-3" aria-label="Clear & Shine – към началото">
+          <img src="/logo.png" alt="" width="68" height="48" className="h-12 w-auto" />
+        </a>
+
+        <nav aria-label="Основна навигация" className="hidden md:block">
+          <ul className="flex gap-8 text-[0.95rem]">
+            {NAV.map((item) => (
+              <li key={item.href}>
+                <a href={item.href} className="text-ink-muted transition-colors duration-200 hover:text-ink">{item.label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <a href={PHONE_HREF} className="btn-bluing hidden md:inline-flex">{PHONE_DISPLAY}</a>
+
+        <button
+          type="button"
+          className="-mr-2 flex h-12 w-12 items-center justify-center rounded-full md:hidden"
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
+          aria-label={menuOpen ? 'Затвори менюто' : 'Отвори менюто'}
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" viewBox="0 0 24 24" aria-hidden="true">
+            {menuOpen ? <path d="M6 6l12 12M18 6 6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+          </svg>
+        </button>
       </div>
+
+      {menuOpen && (
+        <nav id="mobile-menu" aria-label="Мобилна навигация" className="border-t border-line bg-white px-4 pb-6 md:hidden">
+          <ul>
+            {NAV.map((item) => (
+              <li key={item.href}>
+                <a href={item.href} onClick={() => setMenuOpen(false)} className="flex min-h-[48px] items-center border-b border-line text-lg">{item.label}</a>
+              </li>
+            ))}
+          </ul>
+          <a href={PHONE_HREF} className="btn-bluing mt-5 w-full">Обадете се: {PHONE_DISPLAY}</a>
+        </nav>
+      )}
     </header>
   )
 }

@@ -5,8 +5,9 @@ export default function Document() {
     <Html lang="bg">
       <Head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="Clear&Shine - Professional Laundry Service" />
+        <meta name="description" content="Clear & Shine – професионално пране, гладене и химическо чистене за хотели, ресторанти и домакинства. Взимане и доставка до врата." />
+        <meta name="theme-color" content="#1E3FAE" />
+        <link rel="icon" href="/logo.png" />
       </Head>
       <body>
         <Main />
